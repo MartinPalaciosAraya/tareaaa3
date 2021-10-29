@@ -1,0 +1,45 @@
+<div>
+  <img id="background" src="../../assets/definitivo.jpg" alt="fondo" class=".img-fluid. max-width:">
+</div>
+
+
+<ul class="container-fluid">
+  <li class="borde mediaborder m-5" *ngFor= "let noticia of ListaNoticias">
+    <div class="noticiasDestacadas" [ngClass]="{
+      'noticiasDestacadas':noticia.destacado == true,
+      'noticias':noticia.destacado== false
+    }">
+        <img src='{{noticia.imagen}}' alt='{{noticia.imagen}}'>
+        <div *ngIf="noticia.destacado==true ">
+          <h2 [ngClass]="{
+          'verdeletra': noticia.categoria == 'Entretenimiento',
+          'azulletra': noticia.categoria== 'Mundo',
+          'rojoOscuroletra': noticia.categoria=='Deporte',
+          'violetaletra': noticia.categoria=='Economia',
+          'azulOscuroletra': noticia.categoria=='Salud',
+          'rojoletra': noticia.categoria=='Tecnologia'
+          }">{{noticia.titulo}}</h2>
+        </div>
+        <div *ngIf="noticia.destacado==false ">
+          <h2>Titulo</h2>
+        </div>
+
+        <p>{{noticia.texto}}</p>
+        <div *ngIf="noticia.destacado==true">
+            <button  class="btn mt-5" [routerLink]="['/detalleNoticia',noticia.id]" routerLinkActive="router-link-active" [ngClass]="{
+              'verde': noticia.categoria == 'Entretenimiento',
+              'azul': noticia.categoria== 'Mundo',
+              'rojoOscuro': noticia.categoria=='Deporte',
+              'violeta': noticia.categoria=='Economia',
+              'azulOscuro': noticia.categoria=='Salud',
+              'rojo': noticia.categoria=='Tecnologia'
+              }">Leer Más</button>
+        </div>
+        <div *ngIf="noticia.destacado==false">
+          <button  class="btn mt-5" [routerLink]="['/detalleNoticia',noticia.id]" routerLinkActive="router-link-active" >Leer Más</button>
+      </div>
+     </div>
+   </li>
+
+</ul>
+
